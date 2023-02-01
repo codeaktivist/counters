@@ -1,19 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-
-import App from './App'
-
-import { configureStore } from '@reduxjs/toolkit'
 import { Provider } from 'react-redux'
-import nodeReducer from './reducers/nodeReducer'
-import reactReducer from './reducers/reactReducer'
-
-const store = configureStore({
-    reducer: {
-        react: reactReducer,
-        node: nodeReducer
-    }
-})
+import store from './store'
+import App from './App'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

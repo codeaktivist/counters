@@ -12,21 +12,21 @@ const incrementCounter = async () => {
     return response.data
 }
 
-const resetCounter = async () => {
-    const response = await axios.get(`${baseUrl}/reset`)
+const decrementCounter = async () => {
+    const response = await axios.get(`${baseUrl}/decrement`)
     return response.data
 }
 
-const decrementCounter = async () => {
-    const response = await axios.get(`${baseUrl}/decrement`)
+const resetCounter = async () => {
+    const response = await axios.get(`${baseUrl}/reset`)
     return response.data
 }
 
 const nodeServices = {
     getCounter,
     incrementCounter,
-    resetCounter,
     decrementCounter,
+    resetCounter,
 }
 
 export default nodeServices

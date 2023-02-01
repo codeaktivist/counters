@@ -1,16 +1,15 @@
 import Counter from './components/Counter'
 import { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 
 import { nodeInit, nodeIncrement, nodeDecrement, nodeReset } from './reducers/nodeReducer'
+import { setCounter } from './reducers/reactReducer'
 
-import { reactSet } from './reducers/reactReducer'
-
-import { useSelector, useDispatch } from 'react-redux'
 
 const App = () => {
     const dispatch = useDispatch()
-    const node = useSelector(n => n.node)
-    const react = useSelector(n => n.react)
+    const nodeCounter = useSelector(n => n.nodeCounter)
+    const reactCounter = useSelector(n => n.reactCounter)
 
     useEffect(() => {
         dispatch(nodeInit())
@@ -20,14 +19,14 @@ const App = () => {
         <>
             <Counter
                 id='reactCounter'
-                counter={react.reactCounter}
-                onIncrement={() => dispatch(reactSet(react.reactCounter + 1))}
-                onReset={() => dispatch(reactSet(0))}
-                onDecrement={() => dispatch(reactSet(react.reactCounter - 1))}
+                counter={reactCounter}
+                onIncrement={() => dispatch(setCounter(reactCounter + 1))}
+                onReset={() => dispatch(setCounter(0))}
+                onDecrement={() => dispatch(setCounter(reactCounter - 1))}
             />
             <Counter
                 id='nodeCounter'
-                counter={node.nodeCounter}
+                counter={nodeCounter}
                 onIncrement={() => dispatch(nodeIncrement())}
                 onReset={() => dispatch(nodeReset())}
                 onDecrement={() => dispatch(nodeDecrement())}

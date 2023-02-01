@@ -1,53 +1,45 @@
+import { createSlice } from '@reduxjs/toolkit'
 import nodeService from '../services/nodeService'
 
-const initialState = {
-    nodeCounter: 0
-}
+const initialState = 0
 
-const nodeReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case 'SET_NODE':
-            return { ...state, nodeCounter: action.payload.nodeCounter }
-        default:
-            return state
-    }
-}
-
-const nodeSet = nodeCounter => {
-    return {
-        type: 'SET_NODE',
-        payload: {
-            nodeCounter
+const nodeSlice = createSlice({
+    name: 'node',
+    initialState,
+    reducers: {
+        setCounter(state, action) {
+            return action.payload
         }
     }
-}
+})
 
 export const nodeInit = () => {
     return async dispatch => {
         const counter = await nodeService.getCounter()
-        dispatch(nodeSet(counter))
+        dispatch(setCounter(counter))
     }
 }
 
 export const nodeIncrement = () => {
     return async dispatch => {
         const counter = await nodeService.incrementCounter()
-        dispatch(nodeSet(counter))
+        dispatch(setCounter(counter))
     }
 }
 
 export const nodeDecrement = () => {
     return async dispatch => {
         const counter = await nodeService.decrementCounter()
-        dispatch(nodeSet(counter))
+        dispatch(setCounter(counter))
     }
 }
 
 export const nodeReset = () => {
     return async dispatch => {
         const counter = await nodeService.resetCounter()
-        dispatch(nodeSet(counter))
+        dispatch(setCounter(counter))
     }
 }
 
-export default nodeReducer
+export const { setCounter } = nodeSlice.actions
+export default nodeSlice.reducer

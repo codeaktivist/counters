@@ -1,23 +1,16 @@
-const initialState = {
-    reactCounter: 0
-}
+import { createSlice } from '@reduxjs/toolkit'
 
-const reactReducer = (state = initialState, action) => {
-    switch(action.type) {
-        case('SET_REACT'):
-            return { ...state, reactCounter: action.payload.reactCounter }
-        default:
-            return state
-    }
-}
+const initialState = 0
 
-export const reactSet = reactCounter => {
-    return {
-        type: 'SET_REACT',
-        payload: {
-            reactCounter
+const reactSlice = createSlice({
+    name: 'react',
+    initialState,
+    reducers: {
+        setCounter(state, action) {
+            return action.payload
         }
     }
-}
+})
 
-export default reactReducer
+export const { setCounter } = reactSlice.actions
+export default reactSlice.reducer
