@@ -1,56 +1,66 @@
-import ReactCounter from './components/Counter'
-import { useState, useEffect } from 'react'
+import Counter from './components/Counter'
+import { useEffect } from 'react'
+
 import nodeService from './services/nodeService'
+import { nodeSet } from './reducers/nodeReducer'
+
+import { reactSet } from './reducers/reactReducer'
+
+import { useSelector, useDispatch } from 'react-redux'
 
 const App = () => {
-    const [react, setReact] = useState(0)
-    const [node, setNode] = useState(0)
+    const dispatch = useDispatch()
+    const allState = useSelector(n => n)
+    console.log('allState: ', allState);
+    const nodeCounter = useSelector(n => n.nodeCounter)
+    const reactCounter = useSelector(n => n.reactCounter)
 
     useEffect(() => {
         nodeService.getCounter()
-            .then(res => setNode(res))
-    }, [])
+            .then(res => {
+                dispatch(nodeSet(res))})
+        dispatch(reactSet(0))
+    }, [dispatch])
 
     const nodeIncrement = () => {
         nodeService.incrementCounter()
-            .then(res => setNode(res))
+            .then(res => dispatch(nodeSet(res)))
     }
 
     const nodeReset = () => {
         nodeService.resetCounter()
-            .then(res => setNode(res))
+            .then(res => dispatch(nodeSet(res)))
     }
 
     const nodeDecrement = () => {
         nodeService.decrementCounter()
-            .then(res => setNode(res))
+            .then(res => dispatch(nodeSet(res)))
     }
 
-
     const reactIncrement = () => {
-        setReact(react + 1)
+        dispatch(reactSet(reactCounter.reactCounter + 1))
     }
 
     const reactReset = () => {
-        setReact(0)
+        dispatch(reactSet(0))
     }
 
     const reactDecrement = () => {
-        setReact(react - 1)
+        dispatch(reactSet(reactCounter.reactCounter - 1))
     }
-    
+
     return (
         <>
-            <ReactCounter 
+            <Counter
                 id='reactCounter'
-                counter={react}
+                counter={reactCounter.reactCounter}
                 onIncrement={reactIncrement}
                 onReset={reactReset}
                 onDecrement={reactDecrement}
             />
-            <ReactCounter
+            <Counter
                 id='nodeCounter'
-                counter={node}
+                counter={nodeCounter.nodeCounter}
                 onIncrement={nodeIncrement}
                 onReset={nodeReset}
                 onDecrement={nodeDecrement}
