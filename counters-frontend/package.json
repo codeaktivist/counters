@@ -19,7 +19,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -40,5 +40,15 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:3001/"
+  "proxy": "http://localhost:3001/",
+  "jest": {
+    "transformIgnorePatterns": [
+      "<rootDir>/node_modules/(?!axios)"
+    ],
+    "testEnvironment": "jsdom",
+    "verbose": true
+  },
+  "devDependencies": {
+    "deep-freeze": "^0.0.1"
+  }
 }
