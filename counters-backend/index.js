@@ -1,8 +1,15 @@
-const http = require('http')
-const app = require('./app')
+const config = require('./config');
+const http = require('http');
+const app = require('./app');
 
-const server = http.createServer(app)
+const server = http.createServer(app);
 
-server.listen(3001, () => {
-    console.log('Server running on port 3001');
-})
+const ENV = config.ENV;
+const URL = config.URL;
+const PORT = config.PORT;
+
+server.listen(PORT, () => {
+  console.log(`The server is running on port ${PORT}`);
+  console.log(`Environment: ${ENV}`);
+  console.log(`URL: ${URL}`);
+});

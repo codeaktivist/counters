@@ -1,4 +1,5 @@
 import Counter from './components/Counter';
+import Environment from './components/Environment';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -31,6 +32,7 @@ const App = () => {
         onReset={() => dispatch(nodeReset())}
         onDecrement={() => dispatch(nodeDecrement())}
       />
+      <Environment />
     </>
   );
 };
