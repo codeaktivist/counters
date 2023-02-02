@@ -1,16 +1,16 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = 0
+const initialState = 0;
 
 const reactSlice = createSlice({
-    name: 'react',
-    initialState,
-    reducers: {
-        setCounter(state, action) {
-            return action.payload
-        }
+  name: 'react',
+  initialState,
+  reducers: {
+    setCounter(state, action) {
+      return action.payload;
     }
-})
+  }
+});
 
-export const { setCounter } = reactSlice.actions
-export default reactSlice.reducer
+export const { setCounter } = reactSlice.actions;
+export default reactSlice.reducer;
