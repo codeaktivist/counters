@@ -7,8 +7,8 @@ A simple counter app utilizing different storage types to keep track of the curr
 Following counters are included:
 - Frontend
 - Backend
-- Redis
-- MongoDB
+- Redis (planned)
+- MongoDB (planned)
 
 ## Scope
 
