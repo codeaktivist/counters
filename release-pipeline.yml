@@ -26,7 +26,7 @@ jobs:
           inputs:
             archiveFilePatterns: "$(PIPELINE.WORKSPACE)/Counters/drop/$(resources.pipeline.Counters.runID).zip"
             destinationFolder: "$(agent.builddirectory)"
-            cleanDestinationFolder: false
+            cleanDestinationFolder: true
           displayName: "extract files"
         - script: |  
             echo "Starting App in prod mode on port 5000"
