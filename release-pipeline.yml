@@ -31,5 +31,7 @@ jobs:
           displayName: "extract files"
         - script: |  
             echo "Starting App in prod mode on $(PORT_PROD)"
-            $(PORT_PROD) $(URL_PROD) pm2 start index.js
+            $(PORT_PROD)
+            $(URL_PROD)
+            pm2 start index.js
           displayName: "pm2 start"
