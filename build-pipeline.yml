@@ -1,11 +1,5 @@
 trigger:
-  branches:
-    include:
-      - main
-  paths:
-    exclude:
-      - build-pipeline.yml
-      - release-pipeline.yml
+- main
 
 jobs:
   - job: Build
