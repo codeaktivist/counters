@@ -31,5 +31,5 @@ jobs:
           displayName: "extract files"
         - script: |
             echo "Starting App in prod mode on $(PORT_PROD)"
-            $(PORT_PROD) $(URL_PROD) pm2 start $(agent.builddirectory)/index.js
+            $(PORT_PROD) $(URL_PROD) pm2 start $(agent.builddirectory)/index.js --name counter-app --force
           displayName: "pm2 start"
