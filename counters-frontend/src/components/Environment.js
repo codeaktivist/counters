@@ -15,6 +15,7 @@ const Environment = () => {
     <>
       <div>Frontend Environment: {env.frontend}</div>
       <div>Backend Environment: {env.backend}</div>
+      <div>Version: 1</div>
     </>
   );
 };
