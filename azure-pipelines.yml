@@ -12,10 +12,12 @@ pool:
 steps:
 - task: NodeTool@0
   inputs:
-    versionSpec: '10.x'
+    versionSource: 'spec'
+    versionSpec: '>=6.15.0'
   displayName: 'Install Node.js'
 
 - script: |
+    node -v
     cd counters-backend/
     npm install
     npm run build
