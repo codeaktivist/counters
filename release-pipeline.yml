@@ -3,37 +3,30 @@ trigger:
 
 resources:
   pipelines:
-  - pipeline: Counters
-    source: Build-Pipeline
+  - pipeline: Counters  # Name of the pipeline resource
+    source: Build-Pipeline # Name of the triggering pipeline
     trigger: 
       branches:
       - main
 
 jobs:
-  - job: Deploy
-    pool:
-      name: Oracle VM
-    steps:
-    - script: |
-        echo "do some linting"
-      displayName: "Debug from release pipeline"    
-    - deployment: Deploy
-      displayName: Deploy
-      environment: dev
-      pool: 
-        name: Oracle VM
-      strategy:
-        runOnce:
-          deploy:
-            steps:          
-            - download: Build-Pipeline
-              artifact: drop  
-            - task: ExtractFiles@1
-              inputs:
-                archiveFilePatterns: '$(PIPELINE.WORKSPACE)/Build-Pipeline/drop/$(resources.pipeline.myappbuild.runID).zip'
-                destinationFolder: '$(agent.builddirectory)'
-                cleanDestinationFolder: false
-            - script: |  
-                echo "Starting App in prod mode on port 5000"
-                $(PORT_PROD) $(URL_PROD) npm run prod
-              displayName: 'npm run prod'
+- deployment: Deploy
+  displayName: Deploy
+  environment: dev
+  pool: 
+    name: Oracle VM
+  strategy:
+    runOnce:
+      deploy:
+        steps:          
+        - download: Build-Pipeline
+          artifact: drop  
+        - task: ExtractFiles@1
+          inputs:
+            archiveFilePatterns: '$(PIPELINE.WORKSPACE)/Build-Pipeline/drop/$(resources.pipeline.myappbuild.runID).zip'
+            destinationFolder: '$(agent.builddirectory)'
+            cleanDestinationFolder: false
+        - script: |  
+            echo "Starting pp in dev mod"
+            npm run dev
+          displayName: 'npm run dev'
