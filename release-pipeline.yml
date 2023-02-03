@@ -3,8 +3,8 @@ trigger:
 
 resources:
   pipelines:
-  - pipeline: Counters  # Name of the pipeline resource
-    source: Build-Pipeline # Name of the triggering pipeline
+  - pipeline: Counters
+    source: Build-Pipeline
     trigger: 
       branches:
       - main
@@ -12,7 +12,7 @@ resources:
 jobs:
 - deployment: Deploy
   displayName: Deploy
-  environment: dev
+  environment: Counters Environment
   pool: 
     name: Oracle VM
   strategy:
@@ -20,13 +20,15 @@ jobs:
       deploy:
         steps:          
         - download: Build-Pipeline
-          artifact: drop  
+          artifact: drop
+          displayName: "download artifact"
         - task: ExtractFiles@1
           inputs:
-            archiveFilePatterns: '$(PIPELINE.WORKSPACE)/Build-Pipeline/drop/$(resources.pipeline.myappbuild.runID).zip'
-            destinationFolder: '$(agent.builddirectory)'
+            archiveFilePatterns: "$(PIPELINE.WORKSPACE)/Build-Pipeline/drop/$(resources.pipeline.Counters.runID).zip"
+            destinationFolder: "$(agent.builddirectory)"
             cleanDestinationFolder: false
+          displayName: "extract files"
         - script: |  
-            echo "Starting pp in dev mod"
-            npm run dev
-          displayName: 'npm run dev'
+            echo "Starting App in prod mode on port 5000"
+            $(PORT_PROD) $(URL_PROD) npm run prod
+          displayName: "npm run prod"
