@@ -1,0 +1,32 @@
+trigger:
+- none
+
+resources:
+  pipelines:
+  - pipeline: Counters  # Name of the pipeline resource
+    source: Build-Pipeline # Name of the triggering pipeline
+    trigger: 
+      branches:
+      - master
+
+jobs:
+- deployment: Deploy
+  displayName: Deploy
+  environment: dev
+  pool: 
+    name: Oracle VM
+  strategy:
+    runOnce:
+      deploy:
+        steps:          
+        - download: Build-Pipeline
+          artifact: drop  
+        - task: ExtractFiles@1
+          inputs:
+            archiveFilePatterns: '$(PIPELINE.WORKSPACE)/Build-Pipeline/drop/$(resources.pipeline.myappbuild.runID).zip'
+            destinationFolder: '$(agent.builddirectory)'
+            cleanDestinationFolder: false
+        - script: |  
+            echo "Starting pp in dev mod"
+            npm run dev
+          displayName: 'npm run dev'
