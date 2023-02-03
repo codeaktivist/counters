@@ -5,8 +5,9 @@ resources:
   pipelines:
   - pipeline: Counters
     source: Build-Pipeline
-    trigger: 
-    - main
+    trigger:
+      branches:
+      - main
 
 jobs:
 - deployment: Deploy
