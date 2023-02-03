@@ -30,6 +30,9 @@ jobs:
             overwriteExistingFiles: true
           displayName: "extract files"
         - script: |
+            export $(PORT_PROD)
+            export $(URL_PROD)
             echo "Starting App in prod mode on $(PORT_PROD)"
-            $(PORT_PROD) $(URL_PROD) pm2 start $(agent.builddirectory)/index.js --name counter-app --force
+            echo "Starting App in prod mode on $PORT_PROD"
+            pm2 start $(agent.builddirectory)/index.js --name counter-app --force
           displayName: "pm2 start"
