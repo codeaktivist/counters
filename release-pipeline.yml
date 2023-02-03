@@ -6,8 +6,7 @@ resources:
   - pipeline: Counters
     source: Build-Pipeline
     trigger: 
-      branches:
-      - main
+    - main
 
 jobs:
 - deployment: Deploy
@@ -19,12 +18,12 @@ jobs:
     runOnce:
       deploy:
         steps:          
-        - download: Build-Pipeline
+        - download: Counters
           artifact: drop
           displayName: "download artifact"
         - task: ExtractFiles@1
           inputs:
-            archiveFilePatterns: "$(PIPELINE.WORKSPACE)/Build-Pipeline/drop/$(resources.pipeline.Counters.runID).zip"
+            archiveFilePatterns: "$(PIPELINE.WORKSPACE)/Counters/drop/$(resources.pipeline.Counters.runID).zip"
             destinationFolder: "$(agent.builddirectory)"
             cleanDestinationFolder: false
           displayName: "extract files"
