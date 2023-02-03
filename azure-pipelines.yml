@@ -18,7 +18,11 @@ steps:
 
 - script: |
     node -v
+    echo $(pwd)
+    echo $(ls)
     cd counters-backend/
+    echo $(pwd)
+    echo $(ls)
     npm install
     npm run build
   displayName: 'npm install and build'
