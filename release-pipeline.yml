@@ -30,6 +30,8 @@ jobs:
             overwriteExistingFiles: true
           displayName: "extract files"
         - script: |
+            echo "PIPELINE.WORKSPACE: $(PIPELINE.WORKSPACE)"
+            echo "agent.builddirectory: $(agent.builddirectory)"
             export $(NODE_ENV)
             export $(PORT_PROD)
             export $(URL_PROD)
