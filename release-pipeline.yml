@@ -26,9 +26,9 @@ jobs:
           inputs:
             archiveFilePatterns: "$(PIPELINE.WORKSPACE)/Counters/drop/$(resources.pipeline.Counters.runID).zip"
             destinationFolder: "$(agent.builddirectory)"
-            cleanDestinationFolder: true
+            cleanDestinationFolder: false
+            overwriteExistingFiles: true
           displayName: "extract files"
         - script: |  
             echo "Starting App in prod mode on port 5000"
-            $(PORT_PROD) $(URL_PROD) pm2 start index.js
-          displayName: "pm2 start"
+            $(PORT_PROD) $(URL_PROD) npm run prod
