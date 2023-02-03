@@ -1,7 +1,7 @@
 trigger:
   branches:
     include:
-      - master
+      - main
   paths:
     exclude:
       - build-pipeline.yml
@@ -16,7 +16,7 @@ jobs:
         inputs:
           versionSource: "spec"
           versionSpec: ">=6.15.0"
-          displayName: "Install Node.js"
+        displayName: "Install Node.js"
       - script: |
           echo "do some linting"
         displayName: "linting"
