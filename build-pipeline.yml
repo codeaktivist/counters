@@ -24,7 +24,7 @@ jobs:
       - script: |
           echo "run frontend test"
           cd counters-frontend/
-          npm run test
+          npm test
         displayName: "frontend component test"
       - script: |
           echo "run frontend linting"
