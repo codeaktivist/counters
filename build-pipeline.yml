@@ -33,9 +33,11 @@ jobs:
           searchFolder: '$(System.DefaultWorkingDirectory)/counters-frontend'
           failTaskOnFailedTests: true
           testRunTitle: 'jest frontend component test'
+        displayName: "publish frontend test results"
       - task: PublishCodeCoverageResults@2
         inputs:
-          summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/cobertura-coverage.xml'
+          summaryFileLocation: '$(System.DefaultWorkingDirectory)/counters-frontend/coverage/cobertura-coverage.xml'
+        displayName: "publish frontend test coverage"
       - script: |
           echo "run frontend linting"
           cd counters-frontend/
