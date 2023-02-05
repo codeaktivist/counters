@@ -42,9 +42,9 @@ jobs:
         displayName: "publish frontend test results"
       - task: PublishCodeCoverageResults@2
         inputs:
+          codeCoverageTool: 'Cobertura'
           summaryFileLocation: '$(System.DefaultWorkingDirectory)/counters-frontend/coverage/cobertura-coverage.xml'
           failIfCoverageEmpty: false
-          pathToSources: '$(System.DefaultWorkingDirectory)/counters-frontend/src'
         displayName: "publish frontend test coverage"
       - script: |
           echo "run frontend linting"
