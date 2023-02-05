@@ -11,6 +11,10 @@ jobs:
           versionSource: "spec"
           versionSpec: ">=6.15.0"
         displayName: "Install Node.js"
+      - task: UseDotNet@2
+        inputs:
+          packageType: 'runtime'
+          version: '2.1'
       - script: |
           node -v
           echo $(pwd)
