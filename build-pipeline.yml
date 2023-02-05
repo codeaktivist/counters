@@ -14,7 +14,7 @@ jobs:
       - task: UseDotNet@2
         inputs:
           packageType: 'runtime'
-          version: '2.1'
+          version: '2.1.x'
       - script: |
           node -v
           echo $(pwd)
