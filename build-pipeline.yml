@@ -4,7 +4,7 @@ trigger:
 jobs:
   - job: Build
     pool:
-      name: Azure Pipelines
+      name: Oracle VM
     steps:
       - task: NodeTool@0
         inputs:
