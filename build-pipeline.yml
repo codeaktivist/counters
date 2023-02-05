@@ -15,8 +15,10 @@ jobs:
           echo "do some linting"
         displayName: "linting"
       - script: |
-          echo "do some unit test"
-        displayName: "unit test"
+          echo "run frontend test"
+          cd counters-frontend/
+          npm run test
+        displayName: "frontend component test"
       - script: |
           node -v
           echo $(pwd)
