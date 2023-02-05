@@ -40,7 +40,7 @@ jobs:
           failTaskOnFailedTests: true
           testRunTitle: 'jest frontend component test'
         displayName: "publish frontend test results"
-      - task: PublishCodeCoverageResults@2
+      - task: PublishCodeCoverageResults@1
         inputs:
           codeCoverageTool: 'Cobertura'
           summaryFileLocation: '$(System.DefaultWorkingDirectory)/counters-frontend/coverage/cobertura-coverage.xml'
