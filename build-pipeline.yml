@@ -26,6 +26,13 @@ jobs:
           cd counters-frontend/
           npm test
         displayName: "frontend component test"
+      - task: PublishTestResults@2
+        inputs:
+          testResultsFormat: 'JUnit'
+          testResultsFiles: 'junit.xml'
+          searchFolder: '$(System.DefaultWorkingDirectory)/counters-frontend'
+          failTaskOnFailedTests: true
+          testRunTitle: 'jest frontend component test'
       - script: |
           echo "run frontend linting"
           cd counters-frontend/

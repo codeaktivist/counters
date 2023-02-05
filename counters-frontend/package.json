@@ -20,7 +20,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "jest",
+    "test": "jest --ci --reporters=default --reporters=jest-junit",
     "eject": "react-scripts eject",
     "eslint": "eslint ."
   },
@@ -54,6 +54,7 @@
     "deep-freeze": "^0.0.1",
     "eslint": "^8.33.0",
     "eslint-plugin-jest": "^27.2.1",
-    "eslint-plugin-react": "^7.32.2"
+    "eslint-plugin-react": "^7.32.2",
+    "jest-junit": "^15.0.0"
   }
 }
