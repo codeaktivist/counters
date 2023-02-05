@@ -12,9 +12,9 @@ resources:
 jobs:
 - deployment: Deploy
   displayName: Deploy
-  environment:
-    name: Counters Environment
-    resourceType: VirtualMachine
+  # environment:
+  #   name: Counters Environment
+  #   resourceType: VirtualMachine
   pool: 
     name: Oracle VM
   strategy:
