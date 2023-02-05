@@ -12,14 +12,6 @@ jobs:
           versionSpec: ">=6.15.0"
         displayName: "Install Node.js"
       - script: |
-          echo "do some linting"
-        displayName: "linting"
-      - script: |
-          echo "run frontend test"
-          cd counters-frontend/
-          npm run test
-        displayName: "frontend component test"
-      - script: |
           node -v
           echo $(pwd)
           echo $(ls)
@@ -29,6 +21,16 @@ jobs:
           npm install
           npm run build
         displayName: "npm install and build"
+      - script: |
+          echo "run frontend test"
+          cd counters-frontend/
+          npm run test
+        displayName: "frontend component test"
+      - script: |
+          echo "run frontend linting"
+          cd counters-frontend/
+          npm run eslint
+        displayName: "linting"
       - task: ArchiveFiles@2
         inputs:
           rootFolderOrFile: "$(System.DefaultWorkingDirectory)/counters-backend"
