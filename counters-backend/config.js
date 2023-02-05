@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const NODE_ENV = process.env.NODE_ENV;
+const NODE_ENV = process.env.NODE_ENV || 'development';
 
 const { ENV, PORT, URL } = NODE_ENV === 'production'
   ? {
@@ -10,8 +10,8 @@ const { ENV, PORT, URL } = NODE_ENV === 'production'
   }
   : {
     ENV: NODE_ENV,
-    PORT: process.env.PORT_DEV,
-    URL: process.env.URL_DEV
+    PORT: process.env.PORT_DEV || 3000,
+    URL: process.env.URL_DEV || 'fallback url'
   };
 
 module.exports = { ENV, PORT, URL };
