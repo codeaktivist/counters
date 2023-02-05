@@ -35,6 +35,6 @@ jobs:
             export $(NODE_ENV)
             export $(PORT_PROD)
             export $(URL_PROD)
-            echo "Starting App in $(NODE_ENV) mode on PORT $PORT_PROD"
+            echo "Starting App in $NODE_ENV mode on PORT $PORT_PROD"
             pm2 start $(agent.builddirectory)/index.js --name counter-app --force --update-env
           displayName: "pm2 start"

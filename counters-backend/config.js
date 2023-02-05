@@ -10,7 +10,7 @@ const { ENV, PORT, URL } = NODE_ENV === 'production'
   }
   : {
     ENV: NODE_ENV,
-    PORT: process.env.PORT_DEV || 3000,
+    PORT: process.env.PORT_DEV || 3001,
     URL: process.env.URL_DEV || 'fallback url'
   };
 
