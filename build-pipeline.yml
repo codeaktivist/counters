@@ -15,6 +15,9 @@ jobs:
         inputs:
           packageType: 'runtime'
           version: '2.1.x'
+      - task: DotNetCoreCLI@2
+        inputs:
+          command: 'build'
       - script: |
           node -v
           echo $(pwd)
