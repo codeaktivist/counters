@@ -43,6 +43,7 @@ jobs:
       - task: PublishCodeCoverageResults@2
         inputs:
           summaryFileLocation: '$(System.DefaultWorkingDirectory)/counters-frontend/coverage/cobertura-coverage.xml'
+          reportDirectory: '$(System.DefaultWorkingDirectory)/counters-frontend/coverage/'
         displayName: "publish frontend test coverage"
       - script: |
           echo "run frontend linting"
