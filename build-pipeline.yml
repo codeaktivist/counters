@@ -4,7 +4,7 @@ trigger:
 jobs:
   - job: Build
     pool:
-      name: default
+      name: Azure Pipelines
     steps:
       - task: NodeTool@0
         inputs:
