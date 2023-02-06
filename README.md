@@ -26,5 +26,6 @@ This app will be uses to setup differed CI/CD scenarios.
 - Backend via npm run prod: localhost:5000
 
 ### Running remote via CI/CD pipeline
-- set PROD_PORT as pipeline variable
+- set NODE_ENV to 'production' via pipeline variable
+- set PROD_PORT via pipeline variable
 - use 'pm2 startOrReload' to run app
