@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const ip = require('ip');
 
 let nodeCounter = 0;
 
@@ -27,5 +28,9 @@ app.get('/api/node/reset', (req, res) => {
 app.get('/api/env', (req, res) => {
   res.send(process.env.NODE_ENV.toString());
 });
+
+app.get('/api/ip', (req, res) => {
+    res.send(ip.address())
+})
 
 module.exports = app;

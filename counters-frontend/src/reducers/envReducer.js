@@ -3,7 +3,8 @@ import axios from 'axios';
 
 const initialState = {
   frontend: 'wait',
-  backend: 'wait'
+  backend: 'wait',
+  ip: 'wait',
 };
 
 const envSlice = createSlice({
@@ -20,6 +21,12 @@ const envSlice = createSlice({
       return {
         ...state,
         frontend: action.payload.frontend
+      };
+    },
+    printIp(state, action) {
+      return {
+        ...state,
+        ip: action.payload.ip
       };
     }
   }
@@ -40,6 +47,15 @@ export const getFrontend = () => {
   };
 };
 
+export const getIp = () => {
+  return async dispatch => {
+    const response = await axios
+      .get('/api/ip')
+      .then(res => res.data);
+    dispatch(printIp({ ip: response }));
+  };
+};
 
-export const { printBackend, printFrontend } = envSlice.actions;
+
+export const { printBackend, printFrontend, printIp } = envSlice.actions;
 export default envSlice.reducer;

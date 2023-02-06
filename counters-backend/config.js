@@ -1,17 +1,13 @@
 require('dotenv').config();
 
-const NODE_ENV = process.env.NODE_ENV || 'development';
+const ENV = process.env.NODE_ENV || 'unset';
 
-const { ENV, PORT, URL } = NODE_ENV === 'production'
+const { PORT } = ENV === 'production'
   ? {
-    ENV: NODE_ENV,
-    PORT: process.env.PORT_PROD,
-    URL: process.env.URL_PROD
+    PORT: process.env.PORT_PROD || 5001, // Fallback Prod Port if unset
   }
   : {
-    ENV: NODE_ENV,
-    PORT: process.env.PORT_DEV || 3001,
-    URL: process.env.URL_DEV || 'fallback url'
+    PORT: process.env.PORT_DEV || 3001, // Fallback Prod Port if unset
   };
 
-module.exports = { ENV, PORT, URL };
+module.exports = { ENV, PORT };
