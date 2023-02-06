@@ -30,3 +30,7 @@ This app will be uses to setup differed CI/CD scenarios.
 - set NODE_ENV to 'production' via pipeline variable
 - set PROD_PORT to '5000' or whatever via pipeline variable
 - use 'pm2 startOrReload' to run app
+
+### Agent configuration
+- VM made available to pipeline via azure-pipelines-agent (https://github.com/microsoft/azure-pipelines-agent/releases)
+- pm2 configured for auto restart after boot (see 'pm2 startup')
