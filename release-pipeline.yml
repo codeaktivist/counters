@@ -21,14 +21,14 @@ jobs:
         steps:          
         - download: Counters
           artifact: drop
-          displayName: "download artifact"
+          displayName: "Download artifact"
         - task: ExtractFiles@1
           inputs:
             archiveFilePatterns: "$(PIPELINE.WORKSPACE)/Counters/drop/$(resources.pipeline.Counters.runID).zip"
             destinationFolder: "$(agent.builddirectory)/live"
             cleanDestinationFolder: true
             overwriteExistingFiles: true
-          displayName: "extract files"
+          displayName: "Extract files"
         - script: |
             echo "PIPELINE.WORKSPACE: $(PIPELINE.WORKSPACE)"
             echo "agent.builddirectory: $(agent.builddirectory)"

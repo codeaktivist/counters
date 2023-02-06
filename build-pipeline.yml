@@ -8,30 +8,24 @@ jobs:
     steps:
       - task: NodeTool@0
         inputs:
-          versionSource: "spec"
-          versionSpec: ">=6.15.0"
-        displayName: "Install Node.js"
+          versionSource: 'spec'
+          versionSpec: '>=6.15.0'
+        displayName: 'Install Node.js'
       - task: UseDotNet@2
-        displayName: 'Use .NET Core sdk'
         inputs:
           packageType: sdk
           version: 3.1.x
           installationPath: $(Agent.ToolsDirectory)/dotnet
+        displayName: 'Use .NET Core sdk'
       - script: |
-          node -v
-          echo $(pwd)
-          echo $(ls)
           cd counters-backend/
-          echo $(pwd)
-          echo $(ls)
           npm install
           npm run build
-        displayName: "npm install and build"
+        displayName: 'npm install and build'
       - script: |
-          echo "run frontend test"
           cd counters-frontend/
           npm test
-        displayName: "frontend component test"
+        displayName: 'Test frontend components'
       - task: PublishTestResults@2
         inputs:
           testResultsFormat: 'JUnit'
@@ -39,26 +33,25 @@ jobs:
           searchFolder: '$(System.DefaultWorkingDirectory)/counters-frontend'
           failTaskOnFailedTests: true
           testRunTitle: 'jest frontend component test'
-        displayName: "publish frontend test results"
+        displayName: 'Publish frontend test results'
       - task: PublishCodeCoverageResults@1
         inputs:
           codeCoverageTool: 'Cobertura'
           summaryFileLocation: '$(System.DefaultWorkingDirectory)/counters-frontend/coverage/cobertura-coverage.xml'
           failIfCoverageEmpty: false
-        displayName: "publish frontend test coverage"
+        displayName: 'Publish frontend test coverage'
       - script: |
-          echo "run frontend linting"
           cd counters-frontend/
           npm run eslint
-        displayName: "linting"
+        displayName: 'linting'
       - task: ArchiveFiles@2
         inputs:
-          rootFolderOrFile: "$(System.DefaultWorkingDirectory)/counters-backend"
+          rootFolderOrFile: '$(System.DefaultWorkingDirectory)/counters-backend'
           includeRootFolder: false
           archiveType: zip
           archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
           replaceExistingArchive: true
-        displayName: "Archive files"
+        displayName: 'Archive files'
       - upload: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
         artifact: drop
-        displayName: "Upload artifact"
+        displayName: 'Upload artifact'
