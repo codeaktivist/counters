@@ -35,6 +35,7 @@ jobs:
             export NODE_ENV=$(NODE_ENV)
             export PORT_PROD=$(PORT_PROD)
             echo "Starting App in $NODE_ENV mode on PORT $PORT_PROD"
+            cd $(agent.builddirectory)
             pm2 startOrReload pm2.json
             pm2 save
           displayName: "pm2 startOrReload"
