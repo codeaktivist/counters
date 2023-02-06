@@ -15,6 +15,7 @@ Following counters are included:
 This app will be uses to setup differed CI/CD scenarios.
 
 ## Networking configuration
+
 ### Running local
 #### Development Mode
 - Frontend via npm start (development): localhost:3001
@@ -27,5 +28,5 @@ This app will be uses to setup differed CI/CD scenarios.
 
 ### Running remote via CI/CD pipeline
 - set NODE_ENV to 'production' via pipeline variable
-- set PROD_PORT via pipeline variable
+- set PROD_PORT to '5000' or whatever via pipeline variable
 - use 'pm2 startOrReload' to run app
