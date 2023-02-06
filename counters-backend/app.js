@@ -30,7 +30,7 @@ app.get('/api/env', (req, res) => {
 });
 
 app.get('/api/ip', (req, res) => {
-    res.send(ip.address())
+  res.send(ip.address());
 })
 
 module.exports = app;
