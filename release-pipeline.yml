@@ -25,8 +25,8 @@ jobs:
         - task: ExtractFiles@1
           inputs:
             archiveFilePatterns: "$(PIPELINE.WORKSPACE)/Counters/drop/$(resources.pipeline.Counters.runID).zip"
-            destinationFolder: "$(agent.builddirectory)"
-            cleanDestinationFolder: false
+            destinationFolder: "$(agent.builddirectory)/live"
+            cleanDestinationFolder: true
             overwriteExistingFiles: true
           displayName: "extract files"
         - script: |
@@ -35,7 +35,7 @@ jobs:
             export NODE_ENV=$(NODE_ENV)
             export PORT_PROD=$(PORT_PROD)
             echo "Starting App in $NODE_ENV mode on PORT $PORT_PROD"
-            cd $(agent.builddirectory)
+            cd $(agent.builddirectory)/live
             pm2 startOrReload pm2.json
             pm2 save
           displayName: "pm2 startOrReload"
