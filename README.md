@@ -34,3 +34,11 @@ This app will be uses to setup differed CI/CD scenarios.
 ### Agent configuration
 - VM made available to pipeline via azure-pipelines-agent (https://github.com/microsoft/azure-pipelines-agent/releases)
 - pm2 configured for auto restart after boot (see 'pm2 startup')
+
+### CI/CD Setups
+#### Individual pipelines
+- build-pipeline.yml -> install, build, lint, test, zip artifacts (drop)
+- release-pipeline.yml -> download artifacts, run app
+
+#### Release pipeline / Azure
+- todo
