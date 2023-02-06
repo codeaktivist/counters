@@ -28,7 +28,7 @@ This app will be uses to setup differed CI/CD scenarios.
 
 ### Running remote via CI/CD pipeline
 - set NODE_ENV to 'production' via pipeline variable
-- set PROD_PORT to '5000' or whatever via pipeline variable
+- set PORT_PROD to '5000' or whatever via pipeline variable
 - use 'pm2 startOrReload' to run app
 
 ### Agent configuration
