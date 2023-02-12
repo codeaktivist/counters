@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
+// this counter is stored in server RAM
 let nodeCounter = 0;
 
 router.get('/', (req, res) => {

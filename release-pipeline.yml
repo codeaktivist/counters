@@ -32,12 +32,15 @@ jobs:
         - script: |
             echo "PIPELINE.WORKSPACE: $(PIPELINE.WORKSPACE)"
             echo "agent.builddirectory: $(agent.builddirectory)"
-            export NODE_ENV=$(NODE_ENV)
-            export PORT_PROD=$(PORT_PROD)
-            export REDIS_URL_DEV=$(REDIS_URL_DEV)
-            export REDIS_URL_PROD=$(REDIS_URL_PROD)
             echo "Starting App in $NODE_ENV mode on PORT $PORT_PROD"
             cd $(agent.builddirectory)/live
             pm2 startOrReload pm2.json
             pm2 save
+          environment:
+            NODE_ENV=$(NODE_ENV)
+            PORT_PROD=$(PORT_PROD)
+            REDIS_URL_DEV=$(REDIS_URL_DEV)
+            REDIS_URL_PROD=$(REDIS_URL_PROD)
+            MONGO_URL_DEV=$(MONGO_URL_DEV)
+            MONGO_URL_PROD=$(MONGO_URL_PROD)
           displayName: "pm2 startOrReload"
