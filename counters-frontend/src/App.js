@@ -4,16 +4,19 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { nodeInit, nodeIncrement, nodeDecrement, nodeReset } from './reducers/nodeReducer';
+import { redisInit, redisIncrement, redisDecrement, redisReset } from './reducers/redisReducer';
 import { setCounter } from './reducers/reactReducer';
 
 
 const App = () => {
   const dispatch = useDispatch();
-  const nodeCounter = useSelector(n => n.nodeCounter);
   const reactCounter = useSelector(n => n.reactCounter);
+  const nodeCounter = useSelector(n => n.nodeCounter);
+  const redisCounter = useSelector(n => n.redisCounter);
 
   useEffect(() => {
     dispatch(nodeInit());
+    dispatch(redisInit());
   }, [dispatch]);
 
   return (
@@ -32,6 +35,14 @@ const App = () => {
         onReset={() => dispatch(nodeReset())}
         onDecrement={() => dispatch(nodeDecrement())}
       />
+      <Counter
+        id='redisCounter'
+        counter={redisCounter}
+        onIncrement={() => dispatch(redisIncrement())}
+        onReset={() => dispatch(redisReset())}
+        onDecrement={() => dispatch(redisDecrement())}
+      />
+
       <Environment />
     </>
   );
