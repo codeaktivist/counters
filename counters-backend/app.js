@@ -1,36 +1,14 @@
 const express = require('express');
 const app = express();
-const ip = require('ip');
 
-let nodeCounter = 0;
-
+// Serve react frontend
 app.use(express.static('build'));
 
-app.get('/api/node', (req, res) => {
-  res.send(nodeCounter.toString());
-});
-
-app.get('/api/node/increment', (req, res) => {
-  nodeCounter += 1;
-  res.send(nodeCounter.toString());
-});
-
-app.get('/api/node/decrement', (req, res) => {
-  nodeCounter -= 1;
-  res.send(nodeCounter.toString());
-});
-
-app.get('/api/node/reset', (req, res) => {
-  nodeCounter = 0;
-  res.send(nodeCounter.toString());
-});
-
-app.get('/api/env', (req, res) => {
-  res.send(process.env.NODE_ENV.toString());
-});
-
-app.get('/api/ip', (req, res) => {
-  res.send(ip.address());
-})
+const infoRouter = require('./routes/infoRouter');
+const nodeRouter = require('./routes/nodeRouter');
+const redisRouter = require('./routes/redisRouter');
+app.use('/api', infoRouter);
+app.use('/api/node', nodeRouter);
+app.use('/api/redis', redisRouter);
 
 module.exports = app;
