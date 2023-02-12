@@ -5,6 +5,8 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { nodeInit, nodeIncrement, nodeDecrement, nodeReset } from './reducers/nodeReducer';
 import { redisInit, redisIncrement, redisDecrement, redisReset } from './reducers/redisReducer';
+import { mongoInit, mongoIncrement, mongoDecrement, mongoReset } from './reducers/mongoReducer';
+
 import { setCounter } from './reducers/reactReducer';
 
 
@@ -13,10 +15,13 @@ const App = () => {
   const reactCounter = useSelector(n => n.reactCounter);
   const nodeCounter = useSelector(n => n.nodeCounter);
   const redisCounter = useSelector(n => n.redisCounter);
+  const mongoCounter = useSelector(n => n.mongoCounter);
+
 
   useEffect(() => {
     dispatch(nodeInit());
     dispatch(redisInit());
+    dispatch(mongoInit());
   }, [dispatch]);
 
   return (
@@ -41,6 +46,13 @@ const App = () => {
         onIncrement={() => dispatch(redisIncrement())}
         onReset={() => dispatch(redisReset())}
         onDecrement={() => dispatch(redisDecrement())}
+      />
+      <Counter
+        id='mongoCounter'
+        counter={mongoCounter}
+        onIncrement={() => dispatch(mongoIncrement())}
+        onReset={() => dispatch(mongoReset())}
+        onDecrement={() => dispatch(mongoDecrement())}
       />
 
       <Environment />
