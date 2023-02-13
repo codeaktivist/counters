@@ -3,7 +3,7 @@ const router = express.Router();
 
 const ip = require('ip');
 
-const version = 1;
+const version = new Date();
 
 router.get('/env', (req, res) => {
   res.send(process.env.NODE_ENV.toString());

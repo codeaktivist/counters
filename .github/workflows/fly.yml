@@ -54,8 +54,6 @@ jobs:
     steps:
       - name: Checkout repository for deploy
         uses: actions/checkout@v3
-      - name: Setup Node environment
-        uses: actions/setup-node@v3
       - name: Setup deploy to fly.io
         uses: superfly/flyctl-actions/setup-flyctl@master
       - name: Deploy app to fly.io

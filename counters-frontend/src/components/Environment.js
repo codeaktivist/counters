@@ -19,7 +19,7 @@ const Environment = () => {
       <div><span className='frontend'>Frontend Environment:</span> {info.frontend}</div>
       <div><span className='backend'>Backend Environment:</span> {info.backend}</div>
       <div>Backend IP address: {info.ip}</div>
-      <div>Version: {info.version}</div>
+      <div>Release: {info.version}</div>
     </>
   );
 };
