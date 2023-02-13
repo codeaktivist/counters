@@ -7,6 +7,9 @@ kill_timeout = 5
 [processes]
   app = "npm run prod"
 
+[build]
+  builder = "heroku/buildpacks:20"
+
 [env]
 
 [experimental]
