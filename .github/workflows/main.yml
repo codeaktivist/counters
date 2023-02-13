@@ -1,0 +1,26 @@
+name: Build Counters App
+
+on:
+  push:
+    branches:
+      - main
+      
+jobs:
+  frontend:
+    runs-on: ubuntu-20.04 
+    steps:
+      - name: setup environment
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      - name: install dependencies
+      - run: |
+          cd counters-frontend
+          npm install
+      - name: eslint
+        run: |
+          npm run lint
+      - name: component tests
+        run: |
+          npm run test
