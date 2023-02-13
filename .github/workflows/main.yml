@@ -45,3 +45,7 @@ jobs:
         run: |
           cd counters-backend
           npm run build
+      - name: setup deploy to fly.io
+        uses: superfly/flyctl-actions/setup-flyctl@master
+      - name: deploy app to fly.io
+        run: flyctl deploy --remote-only ./counters-backend
