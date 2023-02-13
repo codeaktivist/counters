@@ -8,7 +8,11 @@ RUN npm ci
 
 COPY --chown=node:node counters-backend/ .
 
-ENV PORT_DEV=3000, PORT_PROD=5000
+COPY --chown=node:node counters-frontend/ frontend-temp
+
+RUN cd frontend-temp && npm ci && npm run build mv build ../build && cd .. && rm -rf frontend-temp
+
+ENV PORT_PROD=8080
 
 USER node
 

@@ -7,10 +7,8 @@ kill_timeout = 5
 [processes]
   app = "npm run prod"
 
-[build]
-  builder = "heroku/buildpacks:20"
-
 [env]
+  PORT_PROD=8080
 
 [experimental]
   auto_rollback = true
