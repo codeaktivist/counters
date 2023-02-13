@@ -1,24 +1,25 @@
-import { getFrontend, getBackend, getIp } from '../reducers/envReducer';
+import { getFrontend, getBackend, getIp, getVersion } from '../reducers/infoReducer';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 
 const Environment = () => {
   const dispatch = useDispatch();
-  const env = useSelector(n => n.env);
+  const info = useSelector(n => n.env);
 
   useEffect(() => {
     dispatch(getFrontend());
     dispatch(getBackend());
     dispatch(getIp());
+    dispatch(getVersion());
   },[]);
 
   return (
     <>
       <div>&nbsp;</div>
-      <div><span className='frontend'>Frontend Environment:</span> {env.frontend}</div>
-      <div><span className='backend'>Backend Environment:</span> {env.backend}</div>
-      <div>Backend IP address: {env.ip}</div>
-      <div>Version: 5</div>
+      <div><span className='frontend'>Frontend Environment:</span> {info.frontend}</div>
+      <div><span className='backend'>Backend Environment:</span> {info.backend}</div>
+      <div>Backend IP address: {info.ip}</div>
+      <div>Version: {info.version}</div>
     </>
   );
 };

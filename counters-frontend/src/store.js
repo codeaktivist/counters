@@ -5,7 +5,7 @@ import cookieReducer from './reducers/cookieReducer';
 import nodeReducer from './reducers/nodeReducer';
 import redisReducer from './reducers/redisReducer';
 import mongoReducer from './reducers/mongoReducer';
-import envReducer from './reducers/envReducer';
+import envReducer from './reducers/infoReducer';
 
 const store = configureStore({
   reducer: {

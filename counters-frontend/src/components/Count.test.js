@@ -3,17 +3,19 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 describe('The counter component', () => {
-  test('is rendered with the correct id and value', () => {
+  test('is rendered with the correct title, id and value', () => {
+    const title = 'Test Counter';
     const id = 'testCounter';
-    const initialCounter = 0;
+    const initialCounter = 666;
     render(<Counter
       id={id}
+      title={title}
       counter={initialCounter}
     />);
-    const component = screen.getByText(id, { exact: false });
+    const component = screen.getByText(title, { exact: false });
     expect(component).toBeDefined();
     const counter = screen.getByTestId(id);
-    expect(counter.innerHTML).toBe('0');
+    expect(counter.innerHTML).toBe(initialCounter.toString());
   });
   test('invokes increase function on click', () => {
     const mockHandler = jest.fn();

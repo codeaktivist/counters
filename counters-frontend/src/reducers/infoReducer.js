@@ -5,6 +5,7 @@ const initialState = {
   frontend: 'wait',
   backend: 'wait',
   ip: 'wait',
+  version: 'wait'
 };
 
 const envSlice = createSlice({
@@ -27,6 +28,12 @@ const envSlice = createSlice({
       return {
         ...state,
         ip: action.payload.ip
+      };
+    },
+    printVersion(state, action) {
+      return {
+        ...state,
+        version: action.payload.version
       };
     }
   }
@@ -56,6 +63,15 @@ export const getIp = () => {
   };
 };
 
+export const getVersion = () => {
+  return async dispatch => {
+    const response = await axios
+      .get('/api/version')
+      .then(res => res.data);
+    dispatch(printVersion({ version: response }));
+  };
+};
 
-export const { printBackend, printFrontend, printIp } = envSlice.actions;
+
+export const { printBackend, printFrontend, printIp, printVersion } = envSlice.actions;
 export default envSlice.reducer;
