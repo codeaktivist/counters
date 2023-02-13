@@ -54,6 +54,16 @@ jobs:
     steps:
       - name: Checkout repository for deploy
         uses: actions/checkout@v3
+      - name: Setup Node environment
+        uses: actions/setup-node@v3
+      - name: Install backend dependencies
+        run: |
+          cd counters-backend
+          npm install
+      - name: Build production frontend
+        run: |
+          cd counters-backend
+          npm run build
       - name: Setup deploy to fly.io
         uses: superfly/flyctl-actions/setup-flyctl@master
       - name: Deploy app to fly.io
