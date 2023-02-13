@@ -1,26 +1,47 @@
-name: Build Counters App
+name: Build Counters App and publish to fly.io
 
 on:
   push:
     branches:
       - main
       
+env:
+  FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+
 jobs:
   frontend:
     runs-on: ubuntu-20.04 
     steps:
-      - name: setup environment
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - name: Checkout repository for frontend
+        uses: actions/checkout@v3
+      - name: Setup Node environment
+        uses: actions/setup-node@v3
         with:
           node-version: '16'
-      - name: install dependencies
-      - run: |
+      - name: Install dependencies
+        run: |
           cd counters-frontend
           npm install
-      - name: eslint
+      - name: Check with eslint
         run: |
+          cd counters-frontend
           npm run lint
-      - name: component tests
+      - name: Component tests
         run: |
+          cd counters-frontend
           npm run test
+  backend:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout repository for backend
+        uses: actions/checkout@v3
+      - name: Setup Node environment
+        uses: actions/setup-node@v3
+      - name: Install backend dependencies
+        run: |
+          cd counters-backend
+          npm install
+      - name: Build production frontend
+        run: |
+          cd counters-backend
+          npm run build
