@@ -1,3 +1,8 @@
+# This Dockerfile will run the app in production environemnt:
+# - Frontend is served via backend
+# - MongoDB is using live data from Atlas (Cloud)
+# - Redis is using live data from Redis Cloud
+
 FROM node:16
 
 WORKDIR /usr/src/app

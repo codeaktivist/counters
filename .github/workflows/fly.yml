@@ -4,12 +4,9 @@ on:
   push:
     branches:
       - main
-      
-env:
-  FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
 
 jobs:
-  frontend:
+  frontend-tests:
     runs-on: ubuntu-20.04 
     steps:
       - name: Checkout repository for frontend test
@@ -30,7 +27,7 @@ jobs:
         run: |
           cd counters-frontend
           npm run test
-  backend:
+  backend-tests:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout repository for backend
@@ -41,11 +38,23 @@ jobs:
         run: |
           cd counters-backend
           npm install
-      - name: Build production frontend
+      - name: Check with eslint
         run: |
           cd counters-backend
-          npm run build
+          npm run lint
+      - name: Component tests with jest
+        run: |
+          cd counters-backend
+          npm run test
+  deploy:
+    needs:
+      - frontend-tests
+      - backend-tests
+    runs-on: ubuntu-20.04
+    steps:
       - name: setup deploy to fly.io
         uses: superfly/flyctl-actions/setup-flyctl@master
       - name: deploy app to fly.io
         run: flyctl deploy --remote-only
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}

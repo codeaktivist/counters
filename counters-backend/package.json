@@ -7,7 +7,7 @@
     "prod": "NODE_ENV=production node index.js",
     "dev": "NODE_ENV=development nodemon node index.js",
     "test": "NODE_ENV=test jest",
-    "eslint": "eslint .",
+    "lint": "eslint .",
     "build": "rm -rf build && cd ../counters-frontend/ && npm install && npm run build && mv build ../counters-backend/"
   },
   "author": "Martin Ulm",
