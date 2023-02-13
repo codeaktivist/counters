@@ -48,4 +48,4 @@ jobs:
       - name: setup deploy to fly.io
         uses: superfly/flyctl-actions/setup-flyctl@master
       - name: deploy app to fly.io
-        run: flyctl deploy --remote-only ./counters-backend
+        run: flyctl deploy --remote-only
