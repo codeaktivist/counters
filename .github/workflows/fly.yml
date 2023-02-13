@@ -52,6 +52,8 @@ jobs:
       - backend-tests
     runs-on: ubuntu-20.04
     steps:
+      - name: Checkout repository for deploy
+        uses: actions/checkout@v3
       - name: setup deploy to fly.io
         uses: superfly/flyctl-actions/setup-flyctl@master
       - name: deploy app to fly.io
