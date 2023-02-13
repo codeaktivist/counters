@@ -27,37 +27,54 @@ const App = () => {
 
   return (
     <>
+      <h1>Counters</h1>
+      <h2>Different counters in different places</h2>
       <Counter
-        id='reactCounter'
         counter={reactCounter}
+        id='reactCounter'
+        title='React'
+        type='frontend'
+        description='stored in a javascript variable in your browser'
         onIncrement={() => dispatch(setCounter(reactCounter + 1))}
         onReset={() => dispatch(setCounter(0))}
         onDecrement={() => dispatch(setCounter(reactCounter - 1))}
       />
       <Counter
-        id='cookieCounter'
         counter={cookieCounter}
+        id='cookieCounter'
+        title='Cookie'
+        type='frontend'
+        description='stored as cookie value in your local storage'
         onIncrement={() => dispatch(cookieIncrement())}
         onReset={() => dispatch(cookieReset())}
         onDecrement={() => dispatch(cookieDecrement())}
       />
       <Counter
-        id='nodeCounter'
         counter={nodeCounter}
+        id='nodeCounter'
+        title='Node'
+        type='backend'
+        description='stored in a javascript variable on the server'
         onIncrement={() => dispatch(nodeIncrement())}
         onReset={() => dispatch(nodeReset())}
         onDecrement={() => dispatch(nodeDecrement())}
       />
       <Counter
-        id='redisCounter'
         counter={redisCounter}
+        id='redisCounter'
+        title='Redis'
+        type='backend'
+        description='stored in a Redis cache database'
         onIncrement={() => dispatch(redisIncrement())}
         onReset={() => dispatch(redisReset())}
         onDecrement={() => dispatch(redisDecrement())}
       />
       <Counter
-        id='mongoCounter'
         counter={mongoCounter}
+        id='mongoCounter'
+        title='Mongo'
+        type='backend'
+        description='stored in a MongoDB NoSQL database'
         onIncrement={() => dispatch(mongoIncrement())}
         onReset={() => dispatch(mongoReset())}
         onDecrement={() => dispatch(mongoDecrement())}

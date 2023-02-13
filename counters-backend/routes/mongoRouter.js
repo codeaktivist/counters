@@ -3,6 +3,7 @@ const router = express.Router();
 const config = require('../utils/config');
 
 const mongoose = require('mongoose');
+mongoose.set('strictQuery', true);
 mongoose.connect(config.MONGO_URL);
 
 const counterSchema = new mongoose.Schema({

@@ -14,7 +14,7 @@ const cookieSlice = createSlice({
 
 export const cookieInit = () => {
   return async dispatch => {
-    const counter = window.localStorage.getItem('cookieCounter') || window.localStorage.setItem('cookieCounter', initialState);
+    const counter = window.localStorage.getItem('cookieCounter') || window.localStorage.setItem('cookieCounter', initialState) || initialState;
     dispatch(setCounter(Number(counter)));
   };
 };
