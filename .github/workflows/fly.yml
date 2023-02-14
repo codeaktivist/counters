@@ -4,6 +4,12 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
 
 jobs:
   frontend-tests:
@@ -47,6 +53,7 @@ jobs:
           cd counters-backend
           npm run test
   deploy:
+    if: ${{ github.event_name == 'push' }}
     needs:
       - frontend-tests
       - backend-tests

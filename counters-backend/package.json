@@ -1,4 +1,7 @@
 {
+  "engines" : { 
+    "node" : "16.15.0" 
+  },
   "name": "counters-backend",
   "version": "0.1.0",
   "description": "",
